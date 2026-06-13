@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPK SMA 24 KEDIRI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    :root {
+      --maroon: #4A0E17;
+      --maroon-mid: #6B1421;
+      --maroon-light: #8B1A2A;
+      --gold: #D4AF37;
+      --gold-light: #E8C84A;
+      --offwhite: #F9F6F0;
+      --charcoal: #1A1A1A;
+    }
+ 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--charcoal);
+      color: var(--offwhite);
+      overflow-x: hidden;
+    }
+ 
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+ 
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      transition: all .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(74, 14, 23, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(212, 175, 55, .2);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+    }
+    .nav-link {
+      position: relative; color: rgba(249,246,240,.8);
+      font-size: .875rem; font-weight: 500; letter-spacing: .04em;
+      transition: color .25s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width .3s ease;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link:hover::after { width: 100%; }
+ 
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 60% 40%, #6B1421 0%, #2A0509 55%, #0D0D0D 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+ 
+    /* Animated particle orbs */
+    .orb {
+      position: absolute; border-radius: 50%; opacity: .12;
+      filter: blur(80px); animation: floatOrb 12s ease-in-out infinite;
+    }
+    .orb-1 { width: 500px; height: 500px; background: #8B1A2A; top: -100px; left: -100px; animation-duration: 14s; }
+    .orb-2 { width: 350px; height: 350px; background: #D4AF37; top: 40%; right: -80px; animation-duration: 10s; animation-delay: -4s; }
+    .orb-3 { width: 280px; height: 280px; background: #4A0E17; bottom: -60px; left: 30%; animation-duration: 16s; animation-delay: -7s; }
+ 
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-40px) scale(1.08); }
+    }
+ 
+    /* Floating particles */
+    .particle {
+      position: absolute; width: 2px; height: 2px;
+      background: var(--gold); border-radius: 50%; opacity: 0;
+      animation: particleRise linear infinite;
+    }
+    @keyframes particleRise {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: .6; }
+      90%  { opacity: .2; }
+      100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+    }
+ 
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 900; line-height: 1.05;
+      background: linear-gradient(135deg, #F9F6F0 30%, #D4AF37 70%, #F9F6F0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: heroReveal .9s cubic-bezier(.22,1,.36,1) both;
+    }
+    .hero-tagline {
+      animation: heroReveal .9s .25s cubic-bezier(.22,1,.36,1) both;
+    }
+    .hero-cta {
+      animation: heroReveal .9s .45s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold) 0%, #B8962B 100%);
+      color: var(--charcoal); font-weight: 700; font-size: .95rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .9rem 2.4rem; border-radius: 3px;
+      position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none;
+    }
+    .cta-btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,.15);
+      transform: translateX(-110%);
+      transition: transform .4s ease;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(212,175,55,.55), 0 8px 24px rgba(0,0,0,.4); }
+    .cta-btn:hover::after { transform: translateX(0); }
+ 
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+ 
+    /* ── SECTION BASE ── */
+    .section { padding: 6rem 1.5rem; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 700; color: var(--offwhite);
+    }
+    .gold-line {
+      display: block; width: 52px; height: 3px;
+      background: var(--gold); margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+ 
+    /* ── PILAR CARDS ── */
+    .pilar-card {
+      background: rgba(74, 14, 23, .25);
+      border: 1px solid rgba(212,175,55,.18);
+      border-radius: 8px; padding: 2rem;
+      backdrop-filter: blur(12px);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+      cursor: default;
+    }
+    .pilar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.5), 0 0 24px rgba(212,175,55,.12);
+      border-color: rgba(212,175,55,.45);
+    }
+    .pilar-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(212,175,55,.12); border: 1.5px solid rgba(212,175,55,.35);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+ 
+    /* ── STRUKTUR CARDS ── */
+    .member-card {
+      background: rgba(74,14,23,.22);
+      border: 1px solid rgba(212,175,55,.12);
+      border-radius: 8px; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .member-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+    .member-photo {
+      position: relative; overflow: hidden;
+    }
+    .member-photo img { width: 100%; display: block; transition: transform .4s ease; }
+    .member-card:hover .member-photo img { transform: scale(1.07); }
+    .member-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(74,14,23,.9) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .member-card:hover .member-overlay { opacity: 1; }
+ 
+    /* ── GALLERY CARDS ── */
+    .gallery-card {
+      position: relative; border-radius: 8px; overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; display: block; }
+    .gallery-card:hover img { transform: scale(1.06); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(26,4,8,.92) 0%, transparent 100%);
+      padding: 1.5rem 1rem 1rem;
+      transform: translateY(100%); transition: transform .4s cubic-bezier(.22,1,.36,1);
+    }
+    .gallery-card:hover .gallery-caption { transform: translateY(0); }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(to right, #0D0205, #1A0408);
+      border-top: 1px solid rgba(212,175,55,.2);
+    }
+    .social-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: rgba(249,246,240,.55); font-size: .85rem;
+      transition: color .25s; text-decoration: none;
+    }
+    .social-link:hover { color: var(--gold); }
+ 
+    /* ── GOLD BADGE ── */
+    .gold-badge {
+      display: inline-block; background: rgba(212,175,55,.12);
+      border: 1px solid rgba(212,175,55,.3);
+      color: var(--gold); font-size: .75rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .9rem; border-radius: 2px;
+    }
+ 
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(212,175,55,.25), transparent);
+    }
+ 
+    /* Mobile menu */
+    .mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      .desktop-menu { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .mobile-menu.open { display: flex; }
+      .hero-title { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+    }
+  </style>
+</head>
+<body x-data="{ mobileOpen: false, scrolled: false }" @scroll.window="scrolled = (window.scrollY > 50)">
+ 
+  <!-- ════════════ NAVBAR ════════════ -->
+  <nav id="navbar" :class="scrolled ? 'scrolled' : 'py-2'" class="py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center border border-[#D4AF37]/50 bg-[#4A0E17]/60">
+          <span class="text-[#D4AF37] font-black text-sm font-['Playfair_Display']">M</span>
+        </div>
+        <div class="leading-tight">
+          <div class="text-[#F9F6F0] font-bold text-sm tracking-wider">MPK</div>
+          <div class="text-[#D4AF37]/70 text-[10px] tracking-widest uppercase">SMA 24 Kediri</div>
+        </div>
+      </div>
+ 
+      <!-- Desktop Menu -->
+      <ul class="desktop-menu hidden md:flex items-center gap-8">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#tentang" class="nav-link">Tentang</a></li>
+        <li><a href="#struktur" class="nav-link">Struktur</a></li>
+        <li><a href="#galeri" class="nav-link">Galeri</a></li>
+      </ul>
+ 
+      <!-- Mobile burger -->
+      <button class="mobile-menu-btn md:hidden flex flex-col gap-1.5 p-2" @click="mobileOpen = !mobileOpen">
+        <span class="block w-5 h-0.5 bg-[#F9F6F0] transition-all" :class="mobileOpen ? 'rotate-45 translate-y-2' : ''"></span>
+        <span class="block w-5 h-0.5 bg-[#F9F6F0] transition-all" :class="mobileOpen ? 'opacity-0' : ''"></span>
+        <span class="block w-5 h-0.5 bg-[#F9F6F0] transition-all" :class="mobileOpen ? '-rotate-45 -translate-y-2' : ''"></span>
+      </button>
+    </div>
+ 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden flex-col gap-4 px-6 py-4 bg-[#4A0E17]/90 backdrop-blur-md mt-2 rounded-lg mx-4" :class="mobileOpen ? 'flex' : 'hidden'">
+      <a href="#hero" class="nav-link text-sm py-2 border-b border-[#D4AF37]/10" @click="mobileOpen=false">Home</a>
+      <a href="#tentang" class="nav-link text-sm py-2 border-b border-[#D4AF37]/10" @click="mobileOpen=false">Tentang</a>
+      <a href="#struktur" class="nav-link text-sm py-2 border-b border-[#D4AF37]/10" @click="mobileOpen=false">Struktur</a>
+      <a href="#galeri" class="nav-link text-sm py-2" @click="mobileOpen=false">Galeri</a>
+    </div>
+  </nav>
+ 
+  <!-- ════════════ HERO ════════════ -->
+  <section id="hero">
+    <!-- Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+ 
+    <!-- Particles -->
+    <script>
+      // Generate particles after DOM load
+      document.addEventListener('DOMContentLoaded', () => {
+        const hero = document.getElementById('hero');
+        for (let i = 0; i < 28; i++) {
+          const p = document.createElement('div');
+          p.className = 'particle';
+          p.style.cssText = `left:${Math.random()*100}%;bottom:0;animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*10}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;opacity:${.3+Math.random()*.5}`;
+          hero.appendChild(p);
+        }
+      });
+    </script>
+ 
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div class="hero-cta mb-6">
+        <span class="gold-badge">Est. 2024 · Legislatif Siswa</span>
+      </div>
+      <h1 class="hero-title mb-6">
+        MPK<br class="sm:hidden"> SMA 24<br>KEDIRI
+      </h1>
+      <p class="hero-tagline text-[#D4AF37]/80 text-base md:text-lg font-light tracking-wide max-w-xl mx-auto mb-10 leading-relaxed">
+        Musyawarah Perwakilan Kelas<br>
+        <span class="text-[#F9F6F0]/60 text-sm">Dedikasi, Integritas, dan Sinergi.</span>
+      </p>
+      <div class="hero-cta">
+        <a href="#tentang" class="cta-btn">Jelajahi Aspirasi</a>
+      </div>
+ 
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
+        <span class="text-xs tracking-widest uppercase text-[#D4AF37]">Scroll</span>
+        <svg width="16" height="24" fill="none" viewBox="0 0 16 24"><path d="M8 1v22M1 16l7 7 7-7" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="section-divider"></div>
+ 
+  <!-- ════════════ TENTANG / PENGERTIAN ════════════ -->
+  <section id="tentang" class="section bg-[#100204]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="gold-badge mb-4 inline-block">Tentang Kami</span>
+        <h2 class="section-title mt-3">Mengenal Lebih Dekat MPK</h2>
+        <span class="gold-line mx-auto"></span>
+        <p class="mt-6 text-[#F9F6F0]/60 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
+          Musyawarah Perwakilan Kelas (MPK) adalah lembaga <span class="text-[#D4AF37] font-semibold">legislatif tertinggi siswa</span> di lingkungan sekolah yang beranggotakan perwakilan dari setiap kelas. Berbeda dengan OSIS yang bergerak sebagai lembaga eksekutif (pelaksana kegiatan), MPK memegang pilar penting dalam <em>check and balances</em> di dalam ekosistem organisasi sekolah.
+        </p>
+      </div>
+ 
+      <!-- 3 Pilar Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="pilar-card reveal reveal-delay-1">
+          <div class="pilar-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#D4AF37" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="gold-badge mb-3 text-[10px]">Pilar I</div>
+          <h3 class="text-[#F9F6F0] font-semibold text-lg mb-3 font-['Playfair_Display']">Fungsi Legislasi</h3>
+          <p class="text-[#F9F6F0]/55 text-sm leading-relaxed">
+            Merumuskan, menetapkan, dan mengevaluasi peraturan serta AD/ART organisasi siswa sebagai landasan hukum yang adil dan transparan.
+          </p>
+        </div>
+ 
+        <!-- Card 2 -->
+        <div class="pilar-card reveal reveal-delay-2">
+          <div class="pilar-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#D4AF37" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </div>
+          <div class="gold-badge mb-3 text-[10px]">Pilar II</div>
+          <h3 class="text-[#F9F6F0] font-semibold text-lg mb-3 font-['Playfair_Display']">Fungsi Pengawasan</h3>
+          <p class="text-[#F9F6F0]/55 text-sm leading-relaxed">
+            Memantau, mengevaluasi, dan menilai kinerja OSIS demi mewujudkan transparansi dan akuntabilitas yang nyata di setiap program.
+          </p>
+        </div>
+ 
+        <!-- Card 3 -->
+        <div class="pilar-card reveal reveal-delay-3">
+          <div class="pilar-icon">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#D4AF37" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+            </svg>
+          </div>
+          <div class="gold-badge mb-3 text-[10px]">Pilar III</div>
+          <h3 class="text-[#F9F6F0] font-semibold text-lg mb-3 font-['Playfair_Display']">Fungsi Aspirasi</h3>
+          <p class="text-[#F9F6F0]/55 text-sm leading-relaxed">
+            Menjadi jembatan resmi, menampung, dan menyalurkan suara serta masukan dari seluruh siswa kepada pihak sekolah secara bermartabat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="section-divider"></div>
+ 
+  <!-- ════════════ STRUKTUR ORGANISASI ════════════ -->
+  <section id="struktur" class="section" style="background: radial-gradient(ellipse at 50% 0%, #2A0509 0%, #0D0D0D 60%)">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="gold-badge mb-4 inline-block">Pengurus Aktif · 2025/2026</span>
+        <h2 class="section-title mt-3">Kabinet Pengurus MPK</h2>
+        <span class="gold-line mx-auto"></span>
+      </div>
+ 
+      <!-- TOP TIER: Ketua -->
+      <div class="flex justify-center mb-6 reveal">
+        <div class="member-card w-52 md:w-60">
+          <div class="member-photo h-56 md:h-64">
+            <img src="https://placehold.co/240x256/4A0E17/D4AF37?text=AGT" alt="Agustin" />
+            <div class="member-overlay">
+              <span class="text-[#D4AF37] text-xs font-semibold tracking-wider uppercase">Ketua MPK</span>
+            </div>
+          </div>
+          <div class="p-3 text-center">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Ketua</div>
+            <div class="text-[#F9F6F0] font-semibold text-sm">Agustin</div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Connecting line visual -->
+      <div class="flex justify-center mb-6">
+        <div class="w-px h-8 bg-[#D4AF37]/30"></div>
+      </div>
+ 
+      <!-- WAKIL KETUA -->
+      <div class="flex justify-center mb-6 reveal">
+        <div class="member-card w-44 md:w-52">
+          <div class="member-photo h-48 md:h-56">
+            <img src="https://placehold.co/208x224/5C1020/D4AF37?text=ALE" alt="Ale" />
+            <div class="member-overlay">
+              <span class="text-[#D4AF37] text-xs font-semibold tracking-wider uppercase">Wakil Ketua</span>
+            </div>
+          </div>
+          <div class="p-3 text-center">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Wakil Ketua</div>
+            <div class="text-[#F9F6F0] font-semibold text-sm">Ale</div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="flex justify-center mb-6">
+        <div class="w-px h-8 bg-[#D4AF37]/30"></div>
+      </div>
+ 
+      <!-- SEKRETARIS: Aura & Faza -->
+      <div class="flex justify-center gap-6 mb-10 reveal">
+        <div class="member-card w-40 md:w-48">
+          <div class="member-photo h-44 md:h-52">
+            <img src="https://placehold.co/192x208/4A0E17/D4AF37?text=AUR" alt="Aura" />
+            <div class="member-overlay">
+              <span class="text-[#D4AF37] text-xs font-semibold tracking-wider uppercase">Sekretaris I</span>
+            </div>
+          </div>
+          <div class="p-3 text-center">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Sekretaris</div>
+            <div class="text-[#F9F6F0] font-semibold text-sm">Aura</div>
+          </div>
+        </div>
+        <div class="member-card w-40 md:w-48">
+          <div class="member-photo h-44 md:h-52">
+            <img src="https://placehold.co/192x208/4A0E17/D4AF37?text=FAZ" alt="Faza" />
+            <div class="member-overlay">
+              <span class="text-[#D4AF37] text-xs font-semibold tracking-wider uppercase">Sekretaris II</span>
+            </div>
+          </div>
+          <div class="p-3 text-center">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Sekretaris</div>
+            <div class="text-[#F9F6F0] font-semibold text-sm">Faza</div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- MEMBERS GRID -->
+      <div class="reveal">
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center gap-3">
+            <div class="h-px w-12 bg-[#D4AF37]/30"></div>
+            <span class="text-[#D4AF37]/60 text-xs tracking-widest uppercase">Anggota</span>
+            <div class="h-px w-12 bg-[#D4AF37]/30"></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <!-- 8 members -->
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=APR" alt="April" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">April</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=SAL" alt="Salsa" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Salsa</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=NAB" alt="Nabila" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Nabila</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=FAB" alt="Fabian" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Fabian</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=FAH" alt="Fahmi" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Fahmi</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=MCK" alt="Micko" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Micko</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=FRZ" alt="Freyz" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Freyz</div></div>
+          </div>
+          <div class="member-card">
+            <div class="member-photo h-36">
+              <img src="https://placehold.co/180x144/4A0E17/D4AF37?text=VNS" alt="Vanesya" />
+              <div class="member-overlay"><span class="text-[#D4AF37] text-[10px] uppercase tracking-wider">Anggota</span></div>
+            </div>
+            <div class="p-2 text-center"><div class="text-[#F9F6F0] text-xs font-semibold">Vanesya</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="section-divider"></div>
+ 
+  <!-- ════════════ GALERI ════════════ -->
+  <section id="galeri" class="section bg-[#0A0101]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="gold-badge mb-4 inline-block">Dokumentasi</span>
+        <h2 class="section-title mt-3">Lensa Kegiatan</h2>
+        <span class="gold-line mx-auto"></span>
+        <p class="mt-5 text-[#F9F6F0]/50 text-sm max-w-xl mx-auto">
+          Dokumentasi momen, rapat koordinasi, dan aksi nyata MPK SMA 24 Kediri.
+        </p>
+      </div>
+ 
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Gallery Item 1 -->
+        <div class="gallery-card reveal reveal-delay-1">
+          <img src="https://placehold.co/400x600/2A0509/D4AF37?text=Rapat+Pleno" alt="Rapat Pleno Evaluasi OSIS" />
+          <div class="gallery-caption">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Kegiatan</div>
+            <p class="text-[#F9F6F0] text-xs font-semibold leading-snug">Rapat Pleno Evaluasi OSIS</p>
+          </div>
+        </div>
+ 
+        <!-- Gallery Item 2 -->
+        <div class="gallery-card reveal reveal-delay-2">
+          <img src="https://placehold.co/400x600/1A0810/D4AF37?text=Sosialisasi" alt="Sosialisasi Penyerapan Aspirasi" />
+          <div class="gallery-caption">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Kegiatan</div>
+            <p class="text-[#F9F6F0] text-xs font-semibold leading-snug">Sosialisasi &amp; Penyerapan Aspirasi Kelas</p>
+          </div>
+        </div>
+ 
+        <!-- Gallery Item 3 -->
+        <div class="gallery-card reveal reveal-delay-3">
+          <img src="https://placehold.co/400x600/0D0205/D4AF37?text=Musyawarah+Besar" alt="Musyawarah Besar Pengurus MPK" />
+          <div class="gallery-caption">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Kegiatan</div>
+            <p class="text-[#F9F6F0] text-xs font-semibold leading-snug">Musyawarah Besar Pengurus MPK</p>
+          </div>
+        </div>
+ 
+        <!-- Gallery Item 4 -->
+        <div class="gallery-card reveal reveal-delay-4">
+          <img src="https://placehold.co/400x600/200408/D4AF37?text=Sinergi+Sekolah" alt="Sinergi Bersama Pihak Sekolah" />
+          <div class="gallery-caption">
+            <div class="text-[#D4AF37] text-[10px] tracking-widest uppercase mb-1">Kegiatan</div>
+            <p class="text-[#F9F6F0] text-xs font-semibold leading-snug">Sinergi Bersama Pihak Sekolah</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="section-divider"></div>
+ 
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer class="px-6 md:px-12 py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
+        <!-- Left -->
+        <div class="max-w-xs">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center border border-[#D4AF37]/40 bg-[#4A0E17]/50">
+              <span class="text-[#D4AF37] font-black text-xs font-['Playfair_Display']">M</span>
+            </div>
+            <span class="text-[#F9F6F0] font-semibold text-sm tracking-wide">MPK SMA 24 KEDIRI</span>
+          </div>
+          <p class="text-[#F9F6F0]/40 text-xs leading-relaxed">
+            Bergerak dengan Bukti,<br>Memimpin dengan Hati.
+          </p>
+        </div>
+ 
+        <!-- Right: Socials -->
+        <div class="flex flex-col gap-3">
+          <p class="text-[#D4AF37]/50 text-[10px] tracking-widest uppercase mb-1">Ikuti Kami</p>
+          <a href="#" class="social-link">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @mpksma24kediri
+          </a>
+          <a href="#" class="social-link">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.95C18.88 4 12 4 12 4s-6.88 0-8.6.47A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.95C5.12 20 12 20 12 20s6.88 0 8.6-.47a2.78 2.78 0 001.94-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            MPK SMA 24 Kediri
+          </a>
+        </div>
+      </div>
+ 
+      <!-- Copyright -->
+      <div class="pt-6 border-t border-[#D4AF37]/10 text-center">
+        <p class="text-[#F9F6F0]/25 text-xs tracking-wider">
+          © 2026 MPK SMA 24 KEDIRI. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- ════════════ SCRIPTS ════════════ -->
+  <script>
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+ 
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
+ 
+</body>
+</html>

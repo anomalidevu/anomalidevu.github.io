@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPK SMA 24 KEDIRI — Dedikasi, Integritas, Sinergi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9F9F9;
+            color: #1A1A1A;
+        }
+
+        /* Vintage Grain Effect Overlay */
+        .grain-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.04;
+        }
+
+        /* Custom Colors Definition for Tailwind v4 compatibility via standard CSS if needed */
+        .bg-maroon-dark { background-color: #4A0E17; }
+        .text-maroon-dark { color: #4A0E17; }
+        .border-maroon-dark { border-color: #4A0E17; }
+        
+        .bg-gold-accent { background-color: #D4AF37; }
+        .text-gold-accent { color: #D4AF37; }
+        .border-gold-accent { border-color: #D4AF37; }
+
+        /* Custom Smooth Glow Effect */
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Particle CSS Animation for Hero Section */
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+        }
+        .particle {
+            position: absolute;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s infinite linear;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div class="grain-effect">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <filter id="noiseFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+        </svg>
+    </div>
+
+    <nav x-data="{ scrolled: false, mobileMenu: false }" 
+         x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
+         :class="scrolled ? 'bg-[#4A0E17]/90 backdrop-blur-md py-3 shadow-lg border-b border-[#D4AF37]/20' : 'bg-transparent py-5'"
+         class="fixed w-full top-0 left-0 z-40 transition-all duration-300 ease-in-out px-4 sm:px-8 md:px-16 flex justify-between items-center text-white'">
+        
+        <a href="#" class="flex items-center space-x-3 group">
+            <div class="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center font-bold text-[#4A0E17] shadow-inner transition-transform duration-300 group-hover:scale-110">
+                <i class="fa-solid fa-gavel text-lg"></i>
+            </div>
+            <span class="font-extrabold tracking-wider text-xl transition-colors duration-300" :class="scrolled ? 'text-white' : 'text-white md:text-white'">
+                MPK <span class="text-[#D4AF37]">SMA 24</span>
+            </span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8 font-medium">
+            <a href="#" class="text-white hover:text-[#D4AF37] transition-colors duration-200 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#D4AF37] hover:after:w-full after:transition-all after:duration-300">Home</a>
+            <a href="#tentang" class="text-white hover:text-[#D4AF37] transition-colors duration-200 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#D4AF37] hover:after:w-full after:transition-all after:duration-300">Tentang</a>
+            <a href="#struktur" class="text-white hover:text-[#D4AF37] transition-colors duration-200 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#D4AF37] hover:after:w-full after:transition-all after:duration-300">Struktur</a>
+            <a href="#galeri" class="text-white hover:text-[#D4AF37] transition-colors duration-200 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#D4AF37] hover:after:w-full after:transition-all after:duration-300">Galeri</a>
+        </div>
+
+        <button @click="mobileMenu = !mobileMenu" class="md:hidden text-white focus:outline-none p-2 rounded hover:bg-white/10 transition-colors">
+            <i class="fa-solid text-2xl" :class="mobileMenu ? 'fa-xmark' : 'fa-bars'"></i>
+        </button>
+
+        <div x-show="mobileMenu" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-4"
+             class="absolute top-full left-0 w-full bg-[#4A0E17] border-b border-[#D4AF37]/20 py-4 px-6 flex flex-col space-y-4 md:hidden shadow-xl"
+             style="display: none;">
+            <a @click="mobileMenu = false" href="#" class="text-white hover:text-[#D4AF37] py-2 border-b border-white/5 font-medium">Home</a>
+            <a @click="mobileMenu = false" href="#tentang" class="text-white hover:text-[#D4AF37] py-2 border-b border-white/5 font-medium">Tentang</a>
+            <a @click="mobileMenu = false" href="#struktur" class="text-white hover:text-[#D4AF37] py-2 border-b border-white/5 font-medium">Struktur</a>
+            <a @click="mobileMenu = false" href="#galeri" class="text-white hover:text-[#D4AF37] py-2 font-medium">Galeri</a>
+        </div>
+    </nav>
+
+
+    <section class="relative min-h-screen bg-gradient-to-br from-[#2D070C] via-[#4A0E17] to-[#110204] flex items-center justify-center overflow-hidden px-4 pt-16">
+        
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="particle w-2 h-2" style="top: 80%; left: 10%; animation-delay: 0s; animation-duration: 6s;"></div>
+            <div class="particle w-3 h-3" style="top: 60%; left: 30%; animation-delay: 2s; animation-duration: 9s;"></div>
+            <div class="particle w-1.5 h-1.5" style="top: 75%; left: 55%; animation-delay: 4s; animation-duration: 7s;"></div>
+            <div class="particle w-4 h-4" style="top: 90%; left: 80%; animation-delay: 1s; animation-duration: 11s;"></div>
+            <div class="particle w-2 h-2" style="top: 40%; left: 85%; animation-delay: 5s; animation-duration: 8s;"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-4xl mx-auto space-y-8 px-4">
+            <div class="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#D4AF37]/30 text-[#D4AF37] text-xs sm:text-sm tracking-widest uppercase font-semibold animate-fade-in">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Official Website</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight">
+                MPK SMA 24 <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF] to-[#D4AF37] bg-[length:200%_auto] animate-pulse">KEDIRI</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-stone-300 font-light max-w-2xl mx-auto tracking-wide leading-relaxed">
+                Musyawarah Perwakilan Kelas — <span class="text-[#D4AF37] font-medium">Dedikasi</span>, <span class="text-[#D4AF37] font-medium">Integritas</span>, dan <span class="text-[#D4AF37] font-medium">Sinergi</span>.
+            </p>
+
+            <div class="pt-4">
+                <a href="#tentang" class="glow-hover inline-flex items-center space-x-3 bg-gradient-to-r from-[#D4AF37] to-[#AA8417] text-[#4A0E17] font-bold px-8 py-4 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group">
+                    <span class="tracking-wider uppercase text-sm">Jelajahi Aspirasi</span>
+                    <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent"></div>
+        </div>
+    </section>
+
+
+    <section id="tentang" class="py-24 px-4 sm:px-8 md:px-16 lg:px-24 bg-[#F9F9F9] relative">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#4A0E17] tracking-tight">Mengenal Lebih Dekat MPK</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto rounded-full"></div>
+                <p class="text-stone-600 leading-relaxed text-sm sm:text-base pt-2">
+                    Musyawarah Perwakilan Kelas (MPK) adalah lembaga legislatif tertinggi siswa di lingkungan sekolah yang beranggotakan perwakilan dari setiap kelas. Berbeda dengan OSIS yang bergerak sebagai lembaga eksekutif (pelaksana kegiatan), MPK memegang pilar penting dalam <span class="italic font-semibold text-[#4A0E17]">check and balances</span> di dalam ekosistem organisasi sekolah.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                
+                <div class="bg-white rounded-2xl p-8 border border-stone-200/60 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group hover:border-[#4A0E17]/20">
+                    <div class="w-14 h-14 rounded-xl bg-[#4A0E17] flex items-center justify-center text-[#D4AF37] text-2xl mb-6 shadow-md transition-transform duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#4A0E17] mb-3 group-hover:text-[#4A0E17] transition-colors">Fungsi Legislasi</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Merumuskan, menetapkan, dan mengevaluasi peraturan serta AD/ART organisasi siswa demi landasan hukum komite internal yang solid.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 border border-stone-200/60 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group hover:border-[#4A0E17]/20">
+                    <div class="w-14 h-14 rounded-xl bg-[#4A0E17] flex items-center justify-center text-[#D4AF37] text-2xl mb-6 shadow-md transition-transform duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#4A0E17] mb-3 group-hover:text-[#4A0E17] transition-colors">Fungsi Pengawasan</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Memantau, mengevaluasi, dan menilai kinerja OSIS secara berkala demi menjamin transparansi, efektivitas, dan akuntabilitas kerja.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 border border-stone-200/60 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group hover:border-[#4A0E17]/20">
+                    <div class="w-14 h-14 rounded-xl bg-[#4A0E17] flex items-center justify-center text-[#D4AF37] text-2xl mb-6 shadow-md transition-transform duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#4A0E17] mb-3 group-hover:text-[#4A0E17] transition-colors">Fungsi Aspirasi</h3>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        Menjadi jembatan resmi, menampung, dan menyalurkan seluruh suara, kritik, serta masukan dari siswa langsung kepada pihak sekolah.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="struktur" class="py-24 px-4 sm:px-8 md:px-16 lg:px-24 bg-stone-100 border-y border-stone-200/50">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#4A0E17] tracking-tight">Kabinet Pengurus MPK</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto rounded-full"></div>
+                <p class="text-stone-500 text-sm tracking-wide">Struktur Kepengurusan Inti dan Anggota Organisasi</p>
+            </div>
+
+            <div class="space-y-16">
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 lg:gap-12 max-w-3xl mx-auto">
+                    <div class="w-full md:w-64 bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl md:scale-105 md:order-1 z-10">
+                        <div class="aspect-square bg-gradient-to-tr from-[#3D0A10] to-[#5C131E] flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-user-tie text-white/20 text-8xl absolute transform group-hover:scale-110 transition-transform duration-300"></i>
+                            <div class="absolute inset-0 bg-[#4A0E17]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white/90 backdrop-blur text-[#4A0E17] font-semibold text-xs py-1 px-3 rounded-full shadow">Struktur Utama</span>
+                            </div>
+                        </div>
+                        <div class="p-6 text-center border-t border-stone-100">
+                            <h4 class="font-bold text-[#4A0E17] text-lg">Agustin</h4>
+                            <p class="text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mt-1">Ketua MPK</p>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-56 bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl md:order-2">
+                        <div class="aspect-square bg-gradient-to-tr from-[#50111A] to-[#731E2B] flex items-center justify-center relative overflow-hidden">
+                            <i class="fa-solid fa-user-graduate text-white/20 text-7xl absolute transform group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-5 text-center border-t border-stone-100">
+                            <h4 class="font-bold text-[#4A0E17] text-base">Ale</h4>
+                            <p class="text-stone-500 text-xs font-semibold uppercase tracking-wider mt-1">Wakil Ketua</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex items-center p-4 space-x-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-tr from-[#4A0E17] to-[#731E2B] flex-shrink-0 flex items-center justify-center text-white/40 text-2xl relative overflow-hidden">
+                            <i class="fa-solid fa-signature"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#4A0E17] text-base">Aura</h4>
+                            <p class="text-stone-400 text-xs font-medium uppercase tracking-wider">Sekretaris I</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex items-center p-4 space-x-4">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-tr from-[#4A0E17] to-[#731E2B] flex-shrink-0 flex items-center justify-center text-white/40 text-2xl relative overflow-hidden">
+                            <i class="fa-solid fa-pen-clip"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[#4A0E17] text-base">Faza</h4>
+                            <p class="text-stone-400 text-xs font-medium uppercase tracking-wider">Sekretaris II</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <div class="text-center mb-8">
+                        <span class="bg-[#4A0E17]/10 text-[#4A0E17] text-xs font-bold tracking-widest uppercase px-4 py-1 rounded-full">Anggota Komisi / Perwakilan</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                        <template x-for="name in ['April', 'Salsa', 'Nabila', 'Fabian', 'Fahmi', 'Micko', 'Freyz', 'Vanesya']">
+                            <div class="bg-white rounded-xl shadow-sm border border-stone-200/80 p-4 text-center group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md hover:border-[#4A0E17]/10">
+                                <div class="w-12 h-12 rounded-full bg-stone-100 mx-auto mb-3 flex items-center justify-center text-stone-400 transition-colors duration-300 group-hover:bg-[#4A0E17]/5 group-hover:text-[#4A0E17]">
+                                    <i class="fa-solid fa-user text-sm"></i>
+                                </div>
+                                <h5 class="font-semibold text-stone-800 text-sm tracking-wide group-hover:text-[#4A0E17]" x-text="name"></h5>
+                                <p class="text-stone-400 text-[11px] font-medium tracking-tight mt-0.5">Staff Anggota</p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="galeri" class="py-24 px-4 sm:px-8 md:px-16 lg:px-24 bg-[#F9F9F9]">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#4A0E17] tracking-tight">Lensa Kegiatan</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto rounded-full"></div>
+                <p class="text-stone-500 text-sm max-w-md mx-auto pt-1">
+                    Dokumentasi momen, rapat koordinasi, dan aksi nyata struktural MPK SMA 24 Kediri.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="relative bg-stone-200 rounded-2xl overflow-hidden shadow-md group aspect-[3/4] transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=400&auto=format&fit=crop" alt="Rapat Pleno" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4A0E17]/90 via-[#4A0E17]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex flex-col justify-end">
+                        <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-1">Sidang</span>
+                        <h3 class="text-white font-bold text-base leading-snug">Rapat Pleno Evaluasi OSIS</h3>
+                    </div>
+                </div>
+
+                <div class="relative bg-stone-200 rounded-2xl overflow-hidden shadow-md group aspect-[3/4] transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1544535830-9df4f783c65a?q=80&w=400&auto=format&fit=crop" alt="Sosialisasi Aspirasi" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4A0E17]/90 via-[#4A0E17]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex flex-col justify-end">
+                        <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-1">Aspirasi</span>
+                        <h3 class="text-white font-bold text-base leading-snug">Sosialisasi & Penyerapan Aspirasi Kelas</h3>
+                    </div>
+                </div>
+
+                <div class="relative bg-stone-200 rounded-2xl overflow-hidden shadow-md group aspect-[3/4] transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&auto=format&fit=crop" alt="Musyawarah Besar" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4A0E17]/90 via-[#4A0E17]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex flex-col justify-end">
+                        <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-1">Musyawarah</span>
+                        <h3 class="text-white font-bold text-base leading-snug">Musyawarah Besar Pengurus MPK</h3>
+                    </div>
+                </div>
+
+                <div class="relative bg-stone-200 rounded-2xl overflow-hidden shadow-md group aspect-[3/4] transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=400&auto=format&fit=crop" alt="Sinergi Sekolah" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#4A0E17]/90 via-[#4A0E17]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300"></div>
+                    
+                    <div class="absolute inset-x-0 bottom-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex flex-col justify-end">
+                        <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-1">Kemitraan</span>
+                        <h3 class="text-white font-bold text-base leading-snug">Sinergi Bersama Pihak Sekolah</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-[#1C0508] text-stone-400 pt-16 pb-8 border-t border-[#D4AF37]/20 px-4 sm:px-8 md:px-16 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12 border-b border-stone-800">
+                <div class="max-w-md space-y-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#4A0E17] font-bold text-xs shadow">
+                            <i class="fa-solid fa-gavel"></i>
+                        </div>
+                        <span class="font-bold tracking-wider text-lg text-white">MPK SMA 24 KEDIRI</span>
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed tracking-wide italic">
+                        "Bergerak dengan Bukti, Memimpin dengan Hati."
+                    </p>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-xs uppercase font-semibold text-stone-500 tracking-widest">Ikuti Kami:</span>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-stone-300 border border-white/10 hover:border-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#4A0E17]/30 transition-all duration-300">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-stone-300 border border-white/10 hover:border-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#4A0E17]/30 transition-all duration-300">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500 gap-4">
+                <p>© 2026 MPK SMA 24 KEDIRI. All Rights Reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html> 
+</body>
+</html>
