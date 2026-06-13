@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senja dalam Cangkir | Cafe Anomali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a3728;
+            --secondary: #dcd0c0;
+            --accent: #c09f80;
+            --bg: #f9f7f2;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Animasi Keren Tenang */
+        .fade-in {
+            animation: fadeIn 2.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=2078') center/cover;
+            color: white;
+        }
+
+        .poem-box {
+            padding: 50px 20px;
+            text-align: center;
+            font-style: italic;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .menu-container {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .menu-card:hover { transform: scale(1.05); }
+
+        .rating-system {
+            text-align: center;
+            padding: 40px;
+            background: var(--secondary);
+        }
+
+        .stars i {
+            color: #ffd700;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .quote-galau {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#menu">Menu</a>
+        <a href="#pemesanan">Pemesanan</a>
+        <a href="#rating">Ulasan</a>
+    </nav>
+
+    <section id="beranda" class="hero fade-in">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem;">Ruang Kenangan</h1>
+        <p>Tempat di mana waktu sejenak berhenti.</p>
+        <div class="quote-galau">"Kadang, aroma kopi lebih jujur daripada janji yang ia beri."</div>
+    </section>
+
+    <section class="poem-box fade-in">
+        <h3>Sebuah Kenangan</h3>
+        <p>"Di meja ini, kita pernah menukar tawa dengan cerita,<br>
+           sebelum jarak menjadi sekat yang tak punya pintu.<br>
+           Kopi ini masih sama hangatnya,<br>
+           namun kursimu kini hanya diisi sunyi yang merdu."</p>
+    </section>
+
+    <section id="menu" class="menu-container">
+        <!-- Menu Kopi (5) -->
+        <div class="menu-card"><h4>Kopi Gula Aren</h4><p>Rp 18.000</p></div>
+        <div class="menu-card"><h4>Creamy Latte</h4><p>Rp 22.000</p></div>
+        <div class="menu-card"><h4>Americano Klasik</h4><p>Rp 15.000</p></div>
+        <div class="menu-card"><h4>Caramel Macchiato</h4><p>Rp 25.000</p></div>
+        <div class="menu-card"><h4>Matcha Espresso</h4><p>Rp 24.000</p></div>
+
+        <!-- Menu Cemilan (4) -->
+        <div class="menu-card"><h4>Croissant Mentega</h4><p>Rp 20.000</p></div>
+        <div class="menu-card"><h4>Kentang Goreng Truffle</h4><p>Rp 18.000</p></div>
+        <div class="menu-card"><h4>Brownies Lumer</h4><p>Rp 15.000</p></div>
+        <div class="menu-card"><h4>Singkong Goreng Madu</h4><p>Rp 12.000</p></div>
+    </section>
+
+    <section id="rating" class="rating-system">
+        <h3>Bagaimana pengalamanmu hari ini?</h3>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </div>
+        <p style="margin-top: 10px;">Berikan bintang untuk rasa yang tertinggal.</p>
+    </section>
+
+    <div class="music-player">
+        <small><i class="fas fa-music"></i> Sekarang Hingga Nanti Kita Tua - Dimas M</small>
+        <!-- Audio tag bisa ditambahkan jika file .mp3 tersedia -->
+    </div>
+
+    <!-- Tambahan Section Pemesanan via WhatsApp -->
+    <section id="pemesanan" style="padding: 60px 20px; text-align: center; background-color: #fff;">
+        <div style="max-width: 500px; margin: auto; border: 1px solid var(--accent); padding: 30px; border-radius: 15px;">
+            <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25D366; margin-bottom: 15px;"></i>
+            <h3 style="font-family: 'Playfair Display', serif;">Pesan Meja atau Kopi</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 25px;">Sampaikan pesananmu, biarkan kami menyiapkan kenyamanan untukmu.</p>
+            
+            <a href="https://wa.me/6281234567890?text=Halo%20Cafe%20Anomali,%20saya%20ingin%20memesan..." 
+               style="text-decoration: none; background-color: var(--primary); color: white; padding: 12px 30px; border-radius: 25px; font-weight: bold; transition: 0.3s; display: inline-block;">
+                Kirim Pesan Sekarang
+            </a>
+            
+            <div class="quote-galau" style="margin-top: 20px;">
+                "Sebab pesan yang tak terbalas lebih pahit dari espresso tanpa gula."
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Script sederhana untuk interaksi bintang rating
+        const stars = document.querySelectorAll('.stars i');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.replace('far', 'fas');
+                    } else {
+                        s.classList.replace('fas', 'far');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>

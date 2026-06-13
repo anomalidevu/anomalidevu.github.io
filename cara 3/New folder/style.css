@@ -1,0 +1,346 @@
+/* Reset dan Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    background-image: url('https://via.placeholder.com/1920x1080/d2b48c/ffffff?text=Vintage+Cafe+Background');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 119, 190, 0.9);
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d2b48c;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background-image: url('https://via.placeholder.com/1920x1080/0077be/ffffff?text=Joglo+Cafe');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 80px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Menu Section */
+.menu {
+    padding: 4rem 0;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.menu h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #0077be;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.menu-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-card h3 {
+    margin: 1rem 0 0.5rem;
+    color: #0077be;
+}
+
+.menu-card p {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #d2b48c;
+}
+
+/* Layanan Section */
+.layanan {
+    padding: 4rem 0;
+    background-color: rgba(210, 180, 140, 0.1);
+}
+
+.layanan h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #0077be;
+}
+
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.layanan-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.layanan-card:hover {
+    transform: translateY(-5px);
+}
+
+.layanan-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.layanan-card h3 {
+    margin: 1rem 0 0.5rem;
+    color: #0077be;
+}
+
+.layanan-card p {
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+/* Testimoni Section */
+.testimoni {
+    padding: 4rem 0;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.testimoni h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #0077be;
+}
+
+.testimoni-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.testimoni-container {
+    display: flex;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+}
+
+.testimoni-card {
+    min-width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    margin: 0 10px;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+.testimoni-card.active {
+    opacity: 1;
+}
+
+.quote-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #0077be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+}
+
+.quote-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.testimoni-card p {
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.testimoni-card h4 {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.job {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.prev, .next {
+    background-color: #0077be;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.prev:hover, .next:hover {
+    background-color: #005a8a;
+}
+
+/* Footer */
+footer {
+    background-color: #0077be;
+    color: #fff;
+    padding: 2rem 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.maps iframe {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.qr img {
+    width: 150px;
+    height: 150px;
+    margin: 1rem 0;
+}
+
+.contact p {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .menu-grid, .layanan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimoni-container {
+        width: 100%;
+    }
+
+    .testimoni-card {
+        min-width: 100%;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}

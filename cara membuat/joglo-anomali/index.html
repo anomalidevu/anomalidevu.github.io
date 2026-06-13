@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joglo Anomali - Café Kuno & Layanan Terpadu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1 class="brand-name">Joglo Anomali</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Beranda</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#services" class="nav-link">Layanan</a></li>
+                <li><a href="#testimonial" class="nav-link">Testimoni</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2 class="hero-title">Selamat Datang di Joglo Anomali</h2>
+            <p class="hero-subtitle">Nikmati Pengalaman Unik Bersama Cita Rasa Tradisional & Modern</p>
+            <button class="cta-button">Pesan Sekarang</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80" alt="Café Kuno Joglo">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Menu Pilihan Kami</h2>
+        
+        <div class="menu-tabs">
+            <button class="tab-button active" data-tab="minuman">Minuman</button>
+            <button class="tab-button" data-tab="makanan">Makanan</button>
+            <button class="tab-button" data-tab="cemilan">Cemilan</button>
+        </div>
+
+        <!-- Menu Minuman -->
+        <div class="menu-content active" id="minuman">
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://www.frisianflag.com/storage/app/media/resep-kami/scm/resep-es-campur.jpg" alt="Es Campur">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Es Campur</h3>
+                        <p>Perpaduan es dengan cendol, nangka, dan sirup merah</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://ahligizi.id/blog/wp-content/uploads/2025/12/side-view-healthyfresh-colorful-fruits-such-as-sloes-glass-bowlpeachescoconut-with-fresh-peach-juice-glass-white-background_11zon.webp" alt="Jus Buah">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Jus Buah Segar</h3>
+                        <p>Jus mangga, jeruk, atau jambu biji segar 100%</p>
+                        <div class="menu-price">Rp 18.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://media.rs-jih.co.id/media-rsjih/jogja/news/img_FuVZ92o.jpg" alt="Kopi">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Kopi Nusantara</h3>
+                        <p>Kopi tradisional dengan cita rasa autentik</p>
+                        <div class="menu-price">Rp 12.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://image.idntimes.com/post/20190615/ice-tea-liptoncom-2-92ddac61a4c17ace3c55aaf553738d30.png" alt="Teh">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Teh Hangat/Dingin</h3>
+                        <p>Teh pilihan dengan rasa yang lembut dan menenangkan</p>
+                        <div class="menu-price">Rp 10.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://images.alodokter.com/dk0z4ums3/image/upload/v1612749308/attached_image/berbagai-fakta-seputar-susu-pasteurisasi-dan-proses-pembuatannya.jpg" alt="Susu">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Susu Hangat/Dingin</h3>
+                        <p>Susu murni dengan rasa alami yang lezat</p>
+                        <div class="menu-price">Rp 13.000</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Makanan -->
+        <div class="menu-content" id="makanan">
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://i.ytimg.com/vi/23e2x1fy-30/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAdrqXXEENUSOyjvqfcpLEltCtBcQ" alt="Mie Goreng">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Mie Goreng Kaya</h3>
+                        <p>Mie goreng dengan telur, sayuran, dan protein pilihan</p>
+                        <div class="menu-price">Rp 25.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://asset.kompas.com/crops/HIamUWpszt2wsV2KspqPn4S5w-o=/0x442:667x886/750x500/data/photo/2021/05/22/60a880ee66dfe.jpg" alt="Mie Kuah">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Mie Kuah Hangat</h3>
+                        <p>Mie lembut dalam kuah kaldu gurih dan nikmat</p>
+                        <div class="menu-price">Rp 22.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://www.finnafood.com/blog/wp-content/uploads/2024/03/bumbu-mie-bangladesh.jpg" alt="Mie Bangladesh">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Mie Bangladesh Istimewa</h3>
+                        <p>Mie kering dengan bumbu oriental yang pedas dan nikmat</p>
+                        <div class="menu-price">Rp 28.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Cemilan -->
+        <div class="menu-content" id="cemilan">
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,f_auto,q_auto:best,w_640/v1639646021/ojzxqfbbmlsjtmmkhrr7.jpg" alt="Kentang Goreng">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Kentang Goreng Gurih</h3>
+                        <p>Kentang dengan saus yang gurih dan menggugah selera</p>
+                        <div class="menu-price">Rp 12.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://www.shutterstock.com/image-photo/fried-crispy-tofu-tahu-goreng-260nw-1913520103.jpg" alt="Tahu Goreng">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Tahu Goreng Krispy</h3>
+                        <p>Tahu goreng dengan tekstur luar yang garing dan dalam yang empuk</p>
+                        <div class="menu-price">Rp 10.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://radartv.disway.id/upload/d839ef2a3cbabd4cd4a0b9f982a24762.jpeg" alt="Pisang Goreng">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Pisang Goreng Madu</h3>
+                        <p>Pisang goreng kecokelatan dengan madu asli</p>
+                        <div class="menu-price">Rp 14.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://assets.unileversolutions.com/recipes-v2/257292.jpg" alt="Mendoan">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Mendoan Klasik</h3>
+                        <p>Gorengan tepung tradisional dengan tekstur yang renyah</p>
+                        <div class="menu-price">Rp 8.000</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Layanan Kami</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&q=80" alt="Dine In">
+                </div>
+                <div class="service-info">
+                    <h3>Dine In</h3>
+                    <p>Nikmati makanan dan minuman sambil bersantai di suasana kafe kuno yang nyaman dan estetik.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://i0.wp.com/hellonimbly.com/wp-content/uploads/2021/07/Social-Media_July_09_R_Takeaway-_-Delivery.png?fit=1024%2C576&ssl=1" alt="Takeaway">
+                </div>
+                <div class="service-info">
+                    <h3>Takeaway & Delivery</h3>
+                    <p>Pesan makanan dan minuman favorit untuk dibawa pulang atau diantar langsung ke lokasi Anda.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/9e/13/b6/barbershop-main-entrance.jpg?w=1200&h=1200&s=1" alt="Potong Rambut">
+                </div>
+                <div class="service-info">
+                    <h3>Barber Shop</h3>
+                    <p>Layanan potong rambut profesional dengan hasil yang rapi dan memuaskan sambil menikmati kopi.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://www.suwatu.id/wp-content/uploads/2025/11/IMG-20240714-WA0031-scaled-1-630x480.jpg" alt="Private Event">
+                </div>
+                <div class="service-info">
+                    <h3>Private Event</h3>
+                    <p>Sewa ruang untuk acara, rapat, atau gathering dengan suasana yang nyaman dan pelayanan terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial" id="testimonial">
+        <h2 class="section-title">Testimoni Pengunjung</h2>
+        <div class="testimonial-container">
+            <button class="nav-arrow left-arrow"><i class="fas fa-chevron-left"></i></button>
+            
+            <div class="testimonial-wrapper">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pengalaman yang luar biasa dan pelayanan yang sangat memuaskan. Saya akan kembali lagi!</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Name Goes Here</h4>
+                    <p class="testimonial-title">Job Title Goes Here</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempat yang sangat unik dengan suasana yang menenangkan dan makanannya enak. Harganya juga sangat terjangkau.</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Name Goes Here</h4>
+                    <p class="testimonial-title">Job Title Goes Here</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kopi di sini sangat nikmat dan barber shop-nya juga bagus. Kombinasi yang sempurna untuk menghabiskan hari santai.</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Name Goes Here</h4>
+                    <p class="testimonial-title">Job Title Goes Here</p>
+                </div>
+            </div>
+
+            <button class="nav-arrow right-arrow"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Joglo Anomali</h3>
+                <p>Café unik dengan layanan terpadu yang menghadirkan pengalaman berbeda.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> <a href="tel:08730681056">0857-3068-1056</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <a href="#map">Lihat Lokasi di Maps</a></p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#testimonial">Testimoni</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 09:00 - 22:00</p>
+                <p>Sabtu: 08:00 - 23:00</p>
+                <p>Minggu: 08:00 - 22:00</p>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <h3>Lokasi Kami</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0689622223743!2d112.03869831176758!3d-7.2466856929999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f5f5f5f5f5f5%3A0x0!2sJl.%20Raya%20Pagu%20-%20Minggiran%2C%20Sambiroto%2C%20Kabupaten%20Kediri!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Joglo Anomali Café. Semua hak cipta dilindungi. | Alamat: Jl. Raya Pagu - Minggiran, Sambiroto, Kec. Kayen Kidul, Kabupaten Kediri, Jawa Timur 64183</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+
+</body>
+</html>

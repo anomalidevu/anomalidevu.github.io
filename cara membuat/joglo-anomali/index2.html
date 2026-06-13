@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joglo Anomali - Café Kuno & Layanan Terpadu</title>
+    <!-- Font & Icon Setup -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS VARIABLE UNTUK WARNA BERDASARKAN GAMBAR MOCKUP */
+        :root {
+            --bg-dark-wood: #21130B;      /* Latar belakang cokelat gelap utama */
+            --bg-medium-wood: #311B0F;    /* Latar belakang section tengah */
+            --bg-light-wood: #462A19;     /* Warna dasar elemen / panel */
+            --card-brown: #2D180E;        /* Latar kartu dalam grid */
+            --tab-inactive: #422616;      /* Tombol tab non-aktif */
+            --text-gold: #C9AF92;         /* Judul utama & aksen emas kuno */
+            --text-cream: #E6DDD0;        /* Deskripsi & teks utama */
+            --btn-orange-brown: #8D471C;  /* Tombol CTA Pesan Sekarang */
+            --border-highlight: #BFA07C;  /* Border emas pada kartu yang disorot */
+        }
+
+        /* RESET & GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Membuat transisi klik menu menjadi halus */
+        }
+
+        body {
+            background-color: var(--bg-dark-wood);
+            color: var(--text-cream);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER & NAVBAR */
+        .header {
+            background-color: #1A0E08;
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(193, 160, 124, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--text-cream);
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gold);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            background-color: var(--btn-orange-brown);
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #A35422;
+            transform: scale(1.03);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        /* SECTION UTAMA (MENU & SERVICES) */
+        .main-container {
+            background-color: var(--bg-medium-wood);
+            padding: 60px 5%;
+        }
+
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-transform: capitalize;
+        }
+
+        /* TAB CONTAINER & BUTTONS */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: var(--bg-dark-wood);
+            padding: 6px;
+            border-radius: 30px;
+            width: max-content;
+            margin: 0 auto 40px auto;
+        }
+
+        .tab-button {
+            background-color: transparent;
+            color: var(--text-cream);
+            border: none;
+            padding: 10px 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: var(--btn-orange-brown);
+            color: #ffffff;
+        }
+
+        /* MENU GRID LAYOUT */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-card {
+            background-color: var(--card-brown);
+            border: 1px solid rgba(193, 160, 124, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 12px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .menu-card.highlight-card {
+            border: 1px solid var(--border-highlight);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-info p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .menu-price {
+            color: var(--text-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* LAYANAN KAMI (SERVICES SECTION) */
+        .services-panel {
+            background-color: var(--bg-light-wood);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .services-panel .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--card-brown);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            padding: 15px;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .service-img-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .service-info p {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* TESTIMONI SECTION */
+        .testimonial-section {
+            background-color: var(--bg-dark-wood);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .testimonial-wrapper {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
+        }
+
+        .testimonial-wrapper::-webkit-scrollbar {
+            display: none; /* Sembunyikan scrollbar Chrome/Safari */
+        }
+
+        .testimonial-card {
+            background-color: var(--card-brown);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: left;
+            position: relative;
+            min-width: calc(33.333% - 14px); /* Memastikan lebar 3 kolom pas */
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar {
+            color: var(--text-gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            min-height: 70px;
+        }
+
+        .testimonial-rating {
+            color: #E2A13C;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1rem;
+        }
+
+        .testimonial-title {
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        /* PANAH NAVIGASI SLIDER */
+        .nav-arrow {
+            background-color: var(--tab-inactive);
+            color: var(--text-gold);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+
+        .nav-arrow:hover {
+            background-color: var(--btn-orange-brown);
+            color: white;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .control-arrow {
+            background-color: var(--card-brown);
+            color: var(--text-gold);
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .control-arrow:hover {
+            background-color: var(--btn-orange-brown);
+            color: white;
+        }
+
+        /* FOOTER & MAPS */
+        .footer {
+            background-color: #160B06;
+            padding: 60px 5% 20px 5%;
+            border-top: 1px solid rgba(193, 160, 124, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p, .footer-section ul {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--text-gold);
+        }
+
+        .contact-info p {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .map-container h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-gold);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .map-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(193, 160, 124, 0.1);
+            font-size: 0.75rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { margin: 0 auto; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .testimonial-card { min-width: calc(50% - 10px); }
+        }
+
+        @media (max-width: 600px) {
+            .footer-content { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 15px; }
+            .testimonial-card { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1 class="brand-name">Joglo Anomali</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Beranda</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#testimonial" class="nav-link">Testimoni</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2 class="hero-title">Joglo Anomali</h2>
+            <p class="hero-subtitle">Tradisi Kuliner & Kenyamanan Klasik</p>
+            <p class="hero-description">Nikmati kehangatan cita rasa nusantara di bangunan Joglo otentik. Tempat terbaik untuk bersantai, menikmati kopi, mencicipi hidangan lezat, hingga layanan premium penunjang gaya hidup Anda.</p>
+            <button class="cta-button">Pesan Sekarang</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80" alt="Café Kuno Joglo">
+        </div>
+    </section>
+
+    <!-- Main Container (Menu & Services) -->
+    <main class="main-container">
+        
+        <!-- Menu Section -->
+        <section class="section-wrapper" id="menu">
+            <h2 class="section-title">Menu Utama</h2>
+            
+            <div class="menu-tabs">
+                <button class="tab-button active" data-category="minuman">Minuman</button>
+                <button class="tab-button" data-category="makanan">Makanan</button>
+                <button class="tab-button" data-category="cemilan">Cemilan</button>
+            </div>
+
+            <!-- Grid Menu Utama (Default: Minuman) -->
+            <div class="menu-grid" id="dynamic-menu-grid">
+                <!-- Data awal minuman dirender menggunakan HTML agar aman, lalu JavaScript akan memanipulasinya saat tab diklik -->
+                <div class="menu-card highlight-card">
+                    <div class="menu-image">
+                        <img src="https://www.frisianflag.com/storage/app/media/resep-kami/scm/resep-es-campur.jpg" alt="Es Campur">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Es Campur</h3>
+                        <p>Perpaduan es dengan cendol, nangka, dan sirup merah...</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://ahligizi.id/blog/wp-content/uploads/2025/12/side-view-healthyfresh-colorful-fruits-such-as-sloes-glass-bowlpeachescoconut-with-fresh-peach-juice-glass-white-background_11zon.webp" alt="Jus Buah">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Jus Buah</h3>
+                        <p>Olahan jus segar dari buah pilihan murni berkualitas.</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://media.rs-jih.co.id/media-rsjih/jogja/news/img_FuVZ92o.jpg" alt="Kopi">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Kopi Tubruk</h3>
+                        <p>Seduhan biji kopi lokal arabika dengan racikan tradisional.</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://image.idntimes.com/post/20190615/ice-tea-liptoncom-2-92ddac61a4c17ace3c55aaf553738d30.png" alt="Teh">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Es Teh Manis</h3>
+                        <p>Kesegaran daun teh premium murni penyejuk dahaga.</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image">
+                        <img src="https://images.alodokter.com/dk0z4ums3/image/upload/v1612749308/attached_image/berbagai-fakta-seputar-susu-pasteurisasi-dan-proses-pembuatannya.jpg" alt="Susu">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Susu Segar</h3>
+                        <p>Susu murni hangat murni dengan khasiat alami penuh nutrisi.</p>
+                        <div class="menu-price">Rp 15.000</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Panel Terpadu -->
+        <section class="services-panel" id="services">
+            <h2 class="section-title">Layanan Kami</h2>
+            <div class="services-grid">
+                
+                <!-- Dine In -->
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&q=80" alt="Dine In">
+                    </div>
+                    <div class="service-info">
+                        <h3>Dine In</h3>
+                        <p>Makan di tempat dengan suasana rumah joglo kuno syahdu.</p>
+                    </div>
+                </div>
+
+                <!-- Takeaway -->
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://i0.wp.com/hellonimbly.com/wp-content/uploads/2021/07/Social-Media_July_09_R_Takeaway-_-Delivery.png?fit=1024%2C576&ssl=1" alt="Takeaway">
+                    </div>
+                    <div class="service-info">
+                        <h3>Takeaway</h3>
+                        <p>Kemasan khusus yang aman bawa pulang ke rumah.</p>
+                    </div>
+                </div>
+
+                <!-- Barber Shop -->
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/9e/13/b6/barbershop-main-entrance.jpg?w=1200&h=1200&s=1" alt="Barber Shop">
+                    </div>
+                    <div class="service-info">
+                        <h3>Barber Shop</h3>
+                        <p>Potong rambut maskulin premium ditangani barber profesional.</p>
+                    </div>
+                </div>
+
+                <!-- Private Event -->
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://www.suwatu.id/wp-content/uploads/2025/11/IMG-20240714-WA0031-scaled-1-630x480.jpg" alt="Private Event">
+                    </div>
+                    <div class="service-info">
+                        <h3>Private Event</h3>
+                        <p>Reservasi area khusus rapat, arisan, hingga acara kumpul keluarga.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section" id="testimonial">
+        <h2 class="section-title">Testimoni Pelanggan</h2>
+        <div class="testimonial-container">
+            <button class="nav-arrow" id="slide-left-btn"><i class="fas fa-chevron-left"></i></button>
+            
+            <div class="testimonial-wrapper" id="testimonial-slider">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Suasananya sangat menenangkan, rasa kopinya nikmat, dan area joglonya sangat instagramable!</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Ahmad Fauzi</h4>
+                    <p class="testimonial-title">Pengunjung Setia</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Sangat terbantu ada barbershop di dalam kafe, bisa cukur rapi sembari menunggu hidangan disajikan.</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Rian Hidayat</h4>
+                    <p class="testimonial-title">Wiraswasta</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Es campurnya juara! Manisnya pas dan isiannya segar. Cocok banget dikunjungi sore-sore bareng keluarga.</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="testimonial-name">Siti Aminah</h4>
+                    <p class="testimonial-title">Ibu Rumah Tangga</p>
+                </div>
+            </div>
+
+            <button class="nav-arrow" id="slide-right-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="testimonial-controls">
+            <button class="control-arrow" id="ctrl-left-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="control-arrow" id="ctrl-right-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Joglo Anomali</h3>
+                <p>Telepon: 0857-3068-1056</p>
+                <div class="contact-info">
+                    <p><a href="#menu">Menu Anomali</a></p>
+                    <p><a href="#services">Layanan Komplit</a></p>
+                    <p><a href="#testimonial">Testimoni Kontak</a></p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#menu">Menu Resto</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 10:00 - 22:00 WIB</p>
+                <p>Sabtu - Minggu: 09:00 - 23:00 WIB</p>
+            </div>
+
+            <div class="footer-section map-container">
+                <h3>Lokasi Kami</h3>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0689622223743!2d112.03869831176758!3d-7.2466856929999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f5f5f5f5f5f5%3A0x0!2sJl.%20Raya%20Pagu%20-%20Minggiran%2C%20Sambiroto%2C%20Kabupaten%20Kediri!5e0!3m2!1sid!2sid!4v1234567890" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Joglo Anomali Café. Semua hak cipta dilindungi. | Alamat: Jl. Raya Pagu - Minggiran, Sambiroto, Kec. Kayen Kidul, Kabupaten Kediri, Jawa Timur 64183</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT ENGINE -->
+    <script>
+        // DATA MENU SECARA DINAMIS (Untuk simulasi klik Tab Menu)
+        const databaseMenu = {
+            minuman: [
+                { name: "Es Campur", img: "https://www.frisianflag.com/storage/app/media/resep-kami/scm/resep-es-campur.jpg", desc: "Perpaduan es dengan cendol, nangka, dan sirup merah...", price: "Rp 15.000", fav: true },
+                { name: "Jus Buah", img: "https://ahligizi.id/blog/wp-content/uploads/2025/12/side-view-healthyfresh-colorful-fruits-such-as-sloes-glass-bowlpeachescoconut-with-fresh-peach-juice-glass-white-background_11zon.webp", desc: "Olahan jus segar dari buah pilihan murni berkualitas.", price: "Rp 15.000" },
+                { name: "Kopi Tubruk", img: "https://media.rs-jih.co.id/media-rsjih/jogja/news/img_FuVZ92o.jpg", desc: "Seduhan biji kopi lokal arabika dengan racikan tradisional.", price: "Rp 15.000" },
+                { name: "Es Teh Manis", img: "https://image.idntimes.com/post/20190615/ice-tea-liptoncom-2-92ddac61a4c17ace3c55aaf553738d30.png", desc: "Kesegaran daun teh premium murni penyejuk dahaga.", price: "Rp 15.000" },
+                { name: "Susu Segar", img: "https://images.alodokter.com/dk0z4ums3/image/upload/v1612749308/attached_image/berbagai-fakta-seputar-susu-pasteurisasi-dan-proses-pembuatannya.jpg", desc: "Susu murni hangat murni dengan khasiat alami penuh nutrisi.", price: "Rp 15.000" }
+            ],
+            makanan: [
+                { name: "Mie Goreng Joglo", img: "https://i.ytimg.com/vi/23e2x1fy-30/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAdrqXXEENUSOyjvqfcpLEltCtBcQ", desc: "Mie goreng kaya bumbu dengan taburan telur, sosis & sayur segar.", price: "Rp 22.000", fav: true },
+                { name: "Bakso Granat", img: "https://asset.kompas.com/crops/HIamUWpszt2wsV2KspqPn4S5w-o=/0x442:667x886/750x500/data/photo/2021/05/22/60a880ee66dfe.jpg", desc: "Bakso sapi urat jumbo super pedas dengan kuah kaldu sapi gurih.", price: "Rp 20.000" },
+                { name: "Nasi Goreng Kuno", img: "https://www.finnafood.com/blog/wp-content/uploads/2024/03/bumbu-mie-bangladesh.jpg", desc: "Nasi goreng resep tradisional jawa, harum asap beraroma otentik.", price: "Rp 18.000" }
+            ],
+            cemilan: [
+                { name: "Kentang Goreng", img: "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,f_auto,q_auto:best,w_640/v1639646021/ojzxqfbbmlsjtmmkhrr7.jpg", desc: "Kentang potong krispi renyah ditaburi garam laut gurih.", price: "Rp 12.000" },
+                { name: "Tahu Walik Kediri", img: "https://www.shutterstock.com/image-photo/fried-crispy-tofu-tahu-goreng-260nw-1913520103.jpg", desc: "Tahu goreng isi adonan bakso ayam renyah krispi di luar.", price: "Rp 10.000", fav: true },
+                { name: "Mendoan Hangat", img: "https://assets.unileversolutions.com/recipes-v2/257292.jpg", desc: "Tempe mendoan lebar khas bumbu ketumbar dicocol sambal kecap.", price: "Rp 8.000" }
+            ]
+        };
+
+        // 1. SISTEM PERGANTIAN TAB MENU KETIKA DIKLIK
+        const tombolTab = document.querySelectorAll('.tab-button');
+        const kontainerGridMenu = document.getElementById('dynamic-menu-grid');
+
+        tombolTab.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Hapus kelas aktif dari tab sebelumnya
+                document.querySelector('.tab-button.active').classList.remove('active');
+                // Tambahkan kelas aktif ke tab yang diklik
+                tab.classList.add('active');
+
+                // Ambil data kategori menu
+                const kategoriTerpilih = tab.getAttribute('data-category');
+                const daftarMenu = databaseMenu[kategoriTerpilih];
+
+                // Kosongkan grid menu lama dan ganti dengan menu baru
+                kontainerGridMenu.innerHTML = "";
+                
+                daftarMenu.forEach(item => {
+                    const susunanKartu = document.createElement('div');
+                    susunanKartu.className = `menu-card ${item.fav ? 'highlight-card' : ''}`;
+                    susunanKartu.innerHTML = `
+                        <div class="menu-image">
+                            <img src="${item.img}" alt="${item.name}">
+                        </div>
+                        <div class="menu-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.desc}</p>
+                            <div class="menu-price">${item.price}</div>
+                        </div>
+                    `;
+                    kontainerGridMenu.appendChild(susunanKartu);
+                });
+            });
+        });
+
+        // 2. MENGHUBUNGKAN TOMBOL "PESAN SEKARANG" KE WHATSAPP
+        const tombolPesan = document.querySelector('.cta-button');
+        tombolPesan.addEventListener('click', () => {
+            const nomorWA = "6285730681056"; // Nomor resmi Joglo Anomali
+            const teksFormat = encodeURIComponent("Halo Joglo Anomali Cafe, saya tertarik melakukan pemesanan menu/reservasi tempat.");
+            window.open(`https://wa.me/${nomorWA}?text=${teksFormat}`, '_blank');
+        });
+
+        // 3. NAVIGASI TOMBOL GESER TESTIMONI (SLIDER CONTROL)
+        const sliderTestimoni = document.getElementById('testimonial-slider');
+        const btnKiri = document.getElementById('slide-left-btn');
+        const btnKanan = document.getElementById('slide-right-btn');
+        const ctrlKiri = document.getElementById('ctrl-left-btn');
+        const ctrlKanan = document.getElementById('ctrl-right-btn');
+
+        function jalankanGeser(arah) {
+            const lebarKartu = document.querySelector('.testimonial-card').clientWidth + 20; 
+            if(arah === 'kanan') {
+                sliderTestimoni.scrollBy({ left: lebarKartu, behavior: 'smooth' });
+            } else {
+                sliderTestimoni.scrollBy({ left: -lebarKartu, behavior: 'smooth' });
+            }
+        }
+
+        // Jalankan fungsi geser ulasan pada setiap elemen navigasi panah
+        btnKanan.addEventListener('click', () => jalankanGeser('kanan'));
+        btnKiri.addEventListener('click', () => jalankanGeser('kiri'));
+        ctrlKanan.addEventListener('click', () => jalankanGeser('kanan'));
+        ctrlKiri.addEventListener('click', () => jalankanGeser('kiri'));
+    </script>
+</body>
+</html>
+</body>
+</html>

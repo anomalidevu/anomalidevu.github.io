@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+    --bg-color: #f5f2ed;
+    --dark-brown: #4a3728;
+    --sage-green: #8da399;
+    --cream: #eaddca;
+    --text-color: #3e362e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Grainy Effect Animation */
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 10%;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-brown);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-order {
+    background-color: var(--sage-green);
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(245, 242, 237, 0.8), rgba(245, 242, 237, 0.8)), 
+                url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 3s ease-in forwards;
+}
+
+.fade-in-delay {
+    opacity: 0;
+    animation: fadeIn 3s ease-in 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Poetry Section */
+.poetry-section {
+    padding: 100px 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.poetry-box {
+    background-color: var(--cream);
+    padding: 3rem;
+    border-radius: 2px;
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid rgba(74, 55, 40, 0.1);
+    box-shadow: 20px 20px 0px var(--sage-green);
+}
+
+.poetry-box h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+}
+
+/* Cards & Interaction */
+.interactive-section {
+    padding: 50px 10%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Rating System */
+.rating {
+    direction: rtl;
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.star {
+    cursor: pointer;
+    color: #ccc;
+    transition: 0.2s;
+}
+
+.star:hover, .star:hover ~ .star, .star.active, .star.active ~ .star {
+    color: #d4af37;
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-content h1 { font-size: 1.8rem; padding: 0 5%; }
+}
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anomali - Serenity & Nostalgia</title>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-espresso: #2D1E17;
+            --warm-sand: #D9C5B2;
+            --muted-gold: #C5A059;
+            --rainy-overlay: rgba(45, 30, 23, 0.7);
+        }
+
+        body {
+            background-color: var(--deep-espresso);
+            color: var(--warm-sand);
+            margin: 0;
+            font-family: 'Inter', sans-serif; /* Default Sans-Serif */
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(45, 30, 23, 0.8), transparent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* Hero / Quote Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(var(--rainy-overlay), var(--rainy-overlay)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .quote-box {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .quote-box h1 {
+            font-size: 3rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Section Puisi */
+        .poetry-section {
+            padding: 10rem 10%;
+            text-align: center;
+            line-height: 2;
+            font-size: 1.2rem;
+        }
+
+        /* Rating Component */
+        .rating-card {
+            background: rgba(217, 197, 178, 0.05);
+            border: 1px solid rgba(217, 197, 178, 0.1);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 300px;
+            border-radius: 4px;
+        }
+
+        .stars {
+            color: var(--muted-gold);
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        footer {
+            padding: 4rem;
+            text-align: center;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" style="color: var(--warm-sand); text-decoration: none;">Menu</a>
+        <a href="#" style="color: var(--warm-sand); text-decoration: none;">Story</a>
+        <a href="#" style="color: var(--warm-sand); text-decoration: none;">Reserve</a>
+    </nav>
+
+    <section class="hero">
+        <div class="quote-box" data-aos="fade-up" data-aos-duration="2500">
+            <h1 class="serif">"Sekarang hingga nanti kita tua, biarkan aroma kopi ini menjadi saksi bisu setiap rintik yang jatuh."</h1>
+        </div>
+    </section>
+
+    <section class="poetry-section">
+        <div data-aos="fade-up" data-aos-duration="2000">
+            <p class="serif">
+                Seperti lagu yang diputar berulang,<br>
+                Kenangan menetap di sudut meja kayu ini.<br>
+                Hangat sandarannya, seperti genggamanmu<br>
+                yang tak pernah benar-benar lepas.
+            </p>
+        </div>
+
+        <!-- Komponen Rating -->
+        <div class="rating-card" data-aos="fade-up" data-aos-delay="300">
+            <p style="margin:0; font-size: 0.9rem;">Customer Nostalgia</p>
+            <div class="stars">★★★★★</div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Cafe Anomali — Di bawah langit yang sama, di musim yang berbeda.
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false, // Animasi akan berjalan setiap kali di-scroll ulang
+            mirror: true
+        });
+    </script>
+
+    <script>
+        // Interaksi Rating
+const stars = document.querySelectorAll('.star');
+const statusText = document.getElementById('rating-status');
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        // Hapus kelas aktif dari semua bintang
+        stars.forEach(s => s.classList.remove('active'));
+        
+        // Tambah kelas aktif ke bintang yang diklik
+        star.classList.add('active');
+        
+        const value = star.getAttribute('data-value');
+        statusText.innerText = `Terima kasih atas ${value} bintangnya!`;
+        statusText.style.color = "#8da399";
+        statusText.style.fontWeight = "bold";
+    });
+});
+
+// Smooth Scroll untuk Navigasi
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+    </script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joglo Anomali - Vintage Monokrom</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --black: #111111;
+            --dark-gray: #333333;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            
+            /* Aksen Coklat Susu */
+            --brown-accent: #A0522D; 
+            --brown-light: #D2B48C;
+
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
+            
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--black);
+            background-color: var(--white);
+            /* Background Cafe Mewah (Dipaksa Hitam Putih via CSS Filter di bawah) */
+            background-image: url('https://picsum.photos/seed/luxurycafeinterior/1920/1080');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            /* Filter Grayscale agar background jadi Hitam Putih */
+            filter: grayscale(100%); 
+            overflow-x: hidden;
+        }
+
+        /* Container overlay agar konten tetap terbaca di atas background */
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.9); /* Overlay putih transparan */
+            min-height: 100vh;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            color: var(--black);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #eee;
+        }
+
+        /* LOGO TANPA KOTAK, POSISI CANTIK */
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            /* Tidak ada border/padding kotak */
+        }
+
+        /* Aksen titik coklat kecil di samping logo agar cantik */
+        .logo::after {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--brown-accent);
+            border-radius: 50%;
+            margin-bottom: 5px; /* Menyelaraskan dengan garis bawah huruf */
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Menu di Tengah */
+        nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-gray);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--brown-accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--brown-accent);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            /* Background Joglo Estetik (Hitam Putih) */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/seed/joglovintage/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        .btn-cta {
+            background-color: var(--white);
+            color: var(--black);
+            padding: 15px 45px;
+            border: 1px solid var(--white);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            animation: fadeInUp 1.2s ease-out 0.6s backwards;
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SECTION UMUM --- */
+        section {
+            padding: 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--brown-accent);
+            margin: 15px auto 0;
+        }
+
+        /* --- LAYANAN --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            border: 1px solid #ddd;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: var(--brown-accent);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            /* Gambar Hitam Putih */
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-img {
+            /* Hover sedikit berwarna coklat/sepia untuk efek elegan */
+            filter: grayscale(100%) sepia(50%) hue-rotate(-30deg) saturate(150%);
+        }
+
+        .service-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-wrapper {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 4px;
+            /* Border tipis elegan */
+            border: 1px solid #eee;
+        }
+
+        .menu-category {
+            margin-bottom: 70px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--black);
+            display: inline-block;
+            color: var(--black);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* Gambar Hitam Putih */
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .menu-img {
+            /* Hover sedikit berwarna */
+            filter: grayscale(100%) sepia(30%);
+            transform: scale(1.05);
+        }
+
+        .menu-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .menu-name {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+
+        .menu-desc {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .menu-price {
+            font-weight: bold;
+            color: var(--brown-accent);
+            font-size: 1.1rem;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        /* --- TESTIMONI --- */
+        .testimonials-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .testimonials-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 30px;
+            padding: 20px 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .testimonials-wrapper::-webkit-scrollbar { display: none; }
+
+        .testimonial-card {
+            min-width: 320px;
+            max-width: 320px;
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .circle-area {
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--brown-accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Foto profil hitam putih */
+            filter: grayscale(100%);
+        }
+
+        .testimonial-text {
+            font-family: var(--font-sans);
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stars {
+            color: var(--brown-accent);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .client-name {
+            font-weight: 700;
+            color: var(--black);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-family: var(--font-serif);
+        }
+
+        .client-role {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--black);
+            color: var(--white);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-arrow:hover {
+            background-color: var(--brown-accent);
+        }
+
+        .prev-arrow { left: -20px; }
+        .next-arrow { right: -20px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 5% 30px;
+            margin-top: 50px;
+            border-top: 4px solid var(--brown-accent);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .footer-col h3 {
+            color: var(--brown-accent);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .footer-info p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-info i {
+            color: var(--brown-accent);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 5px;
+            /* Peta monokrom */
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+
+        .qr-section {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .qr-section img {
+            max-width: 150px;
+            border: 4px solid var(--white);
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 15px; text-align: center; }
+            
+            .menu-toggle { display: block; }
+            
+            .prev-arrow, .next-arrow { display: none; }
+            .testimonial-card { min-width: 85%; }
+            
+            .footer-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-overlay">
+        <!-- Header -->
+        <header>
+            <!-- Logo Tanpa Kotak, Posisi Cantik -->
+            <div class="logo">Joglo Anomali</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="#home" class="active">Beranda</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <h1>JOGLO ANOMALI</h1>
+            <p>Keseimbangan rasa antara warisan budaya dan estetika modern dalam nuansa monokrom yang timeless.</p>
+            <button class="btn-cta" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">Lihat Menu</button>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="reveal">
+            <div class="section-title">
+                <h2>Layanan Kami</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://picsum.photos/seed/cafeinteriorbw/400/300" alt="Cafe" class="service-img">
+                    <div class="service-content">
+                        <h3>Cafe & Resto</h3>
+                        <p>Tempat bersantai dengan menu beragam dalam suasana Joglo yang nyaman.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://picsum.photos/seed/barbershopbw/400/300" alt="Pangkas Rambut" class="service-img">
+                    <div class="service-content">
+                        <h3>Pangkas Rambut</h3>
+                        <p>Layanan potong rambut profesional untuk melengkapi penampilan Anda.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://picsum.photos/seed/luxuryloungebw/400/300" alt="Lounge" class="service-img">
+                    <div class="service-content">
+                        <h3>Exclusive Lounge</h3>
+                        <p>Ruang VIP untuk pertemuan pribadi dengan privasi terjaga.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu">
+            <div class="section-title reveal">
+                <h2>Menu Pilihan</h2>
+                <p style="margin-top:10px; color: #666;">Harga: Rp 10.000 - Rp 50.000</p>
+            </div>
+
+            <div class="menu-wrapper reveal">
+                <!-- Kategori 1: Minuman -->
+                <div class="menu-category">
+                    <h3 class="category-title">Minuman</h3>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/escampurbw/300/200" alt="Es Campur" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Es Campur Spesial</div>
+                                <div class="menu-desc">Buah segar, cincau, sirup khas.</div>
+                                <div class="menu-price">Rp 18.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/kopijossbw/300/200" alt="Kopi Joss" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Kopi Joss</div>
+                                <div class="menu-desc">Kopi hitam dengan arang panas.</div>
+                                <div class="menu-price">Rp 12.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/wedangjahebw/300/200" alt="Wedang Jahe" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Wedang Jahe</div>
+                                <div class="menu-desc">Jahe merah hangat, kaya rempah.</div>
+                                <div class="menu-price">Rp 10.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/thaiteabw/300/200" alt="Thai Tea" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Thai Tea</div>
+                                <div class="menu-desc">Teh susu Thailand yang creamy.</div>
+                                <div class="menu-price">Rp 18.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: Makanan -->
+                <div class="menu-category">
+                    <h3 class="category-title">Makanan Berat</h3>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/miegorengbw/300/200" alt="Mie Goreng" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Mie Goreng Jawa</div>
+                                <div class="menu-desc">Bumbu rempah pilihan, telur.</div>
+                                <div class="menu-price">Rp 15.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/miekuahbw/300/200" alt="Mie Kuah" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Mie Kuah Ayam</div>
+                                <div class="menu-desc">Kaldu gurih dengan ayam suwir.</div>
+                                <div class="menu-price">Rp 15.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/miebanglabw/300/200" alt="Mie Bangladesh" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Mie Bangladesh</div>
+                                <div class="menu-desc">Pedas kaya bumbu kari khas.</div>
+                                <div class="menu-price">Rp 25.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 3: Cemilan -->
+                <div class="menu-category">
+                    <h3 class="category-title">Cemilan</h3>
+                    <div class="menu-grid">
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/tahupetisbw/300/200" alt="Tahu Petis" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Tahu Petis</div>
+                                <div class="menu-desc">Gurih renyah dengan petis madura.</div>
+                                <div class="menu-price">Rp 10.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/pisanggorengbw/300/200" alt="Pisang Goreng" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Pisang Goreng</div>
+                                <div class="menu-desc">Toping keju melimpah.</div>
+                                <div class="menu-price">Rp 12.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/mendoanbw/300/200" alt="Mendoan" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Tempe Mendoan</div>
+                                <div class="menu-desc">Tempe tipis khas Banyumas.</div>
+                                <div class="menu-price">Rp 10.000</div>
+                            </div>
+                        </div>
+                        <div class="menu-card">
+                            <img src="https://picsum.photos/seed/tahuwalikbw/300/200" alt="Tahu Walik" class="menu-img">
+                            <div class="menu-info">
+                                <div class="menu-name">Tahu Walik</div>
+                                <div class="menu-desc">Tahu balut adonan, terbalik.</div>
+                                <div class="menu-price">Rp 12.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="reveal">
+            <div class="section-title">
+                <h2>Kata Pengunjung</h2>
+            </div>
+
+            <div class="testimonials-container">
+                <div class="nav-arrow prev-arrow" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
+                
+                <div class="testimonials-wrapper" id="testimonialSlider">
+                    <!-- Card 1 -->
+                    <div class="testimonial-card">
+                        <div class="circle-area">
+                            <img src="https://picsum.photos/seed/user13/100/100" alt="Visitor 1">
+                        </div>
+                        <div class="testimonial-text">menarik</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="client-name">Name Goes Here</div>
+                        <div class="client-role">Job Title Goes Here and</div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="circle-area">
+                            <img src="https://picsum.photos/seed/user14/100/100" alt="Visitor 2">
+                        </div>
+                        <div class="testimonial-text">menarik</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="client-name">Name Goes Here</div>
+                        <div class="client-role">Job Title Goes Here and</div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="circle-area">
+                            <img src="https://picsum.photos/seed/user15/100/100" alt="Visitor 3">
+                        </div>
+                        <div class="testimonial-text">menarik</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="client-name">Name Goes Here</div>
+                        <div class="client-role">Job Title Goes Here and</div>
+                    </div>
+                </div>
+
+                <div class="nav-arrow next-arrow" id="nextBtn"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="footer-content">
+                <!-- Kolom Info -->
+                <div class="footer-col footer-info">
+                    <h3>Joglo Anomali</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 63WX+P7M, Jl. Raya Pagu - Minggiran, RT.02/RW.03, Sambiroto, Sambirobyong, Kec. Kayen Kidul, Kab. Kediri, Jawa Timur 64183</p>
+                    <p><i class="fas fa-phone"></i> 0873-0681-056</p>
+                    <p><i class="fas fa-envelope"></i> info@jogloanomali.com</p>
+                </div>
+
+                <!-- Kolom Peta -->
+                <div class="footer-col map-container">
+                    <h3>Lokasi Kami</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.77289891234!2d112.015!3d-7.915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTQnNTQuMCJTIDExMsKwMDAnNTQuMCJF!5e0!3m2!1sid!2sid!4v1625621234567!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Kolom QR Code -->
+                <div class="footer-col">
+                    <h3>Pemesanan</h3>
+                    <div class="qr-section">
+                        <p style="margin-bottom:10px; font-size:0.9rem;">Scan untuk pesan:</p>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=JogloAnomaliOrder" alt="Scan QR Code">
+                        <p style="font-size: 0.8rem;">GoFood / GrabFood</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Joglo Anomali. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // 2. Scroll Animation (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 3. Testimonial Slider Logic
+        const slider = document.getElementById('testimonialSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 350, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -350, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
